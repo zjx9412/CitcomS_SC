@@ -1,0 +1,266 @@
+# timestepping information
+minstep=1
+maxstep=50000
+maxtotstep=50000
+storage_spacing_Myr=5
+exit_at_present=1
+storage_spacing=50000
+checkpointFrequency=50000
+cpu_limits_in_seconds=360000000
+
+
+# Governing parameters
+inputdiffusivity=1.0
+rayleigh=1.60e09
+dissipation_number=1.56
+gruneisen=0
+surfaceT=0.08
+Q0=46.90816
+
+# Age information
+start_age=1800
+reset_startage=0
+
+
+# specify output files
+datadir="/scratch/v05/jz1263/ccg16/data/%RANK"
+datafile="ccg16"
+
+output_format=ascii
+output_optional=surf,botm,horiz_avg,comp_nd
+output_ll_max=20
+stokes_flow_only=0
+
+
+# restart info
+restart=0
+post_p=0
+datadir_old="/g/data/v05/shared/CitcomS/Input/1.8Ga_OPT/ic"
+datafile_old="Cao2024"
+solution_cycles_init=1800
+zero_elapsed_time=1
+tic_method=-1
+
+# Data input and program debugging
+DESCRIBE=off
+BEGINNER=off
+VERBOSE=on
+
+verbose=off
+see_convergence=0
+
+
+# processors, mesh grid information
+nproc_surf=12
+nprocx=4
+nprocy=4
+nprocz=2
+nodex=129
+nodey=129
+nodez=65
+mgunitx=4
+mgunity=4
+mgunitz=4
+levels=4
+
+
+# Tracer information
+tracer=on
+
+tracer_enriched=0
+tracer_ic_method=1
+tracers_per_element=30
+tracer_file="/g/data/v05/shared/CitcomS/Input/1.8Ga_OPT/trac/Cao2024.tracer.1800Ma"
+tracer_flavors=4
+ic_method_for_flavors=0
+z_interface=0.9937,0.9356,0.57355
+itracer_warnings=1
+
+regular_grid_deltheta=0.05
+regular_grid_delphi=0.05
+
+chemical_buoyancy=on
+buoy_type=1
+hybrid_method=1
+buoyancy_ratio=-0.8345,-0.211,0.375
+reset_initial_composition=off
+
+
+# specify input files
+# Important: when file_vbcs is 1, make sure topvbc is also turned on.
+
+reference_state=0
+refstate_file="/g/data/v05/shared/CitcomS/Input/new_2p5_6_T-H15_G5_di_formatted.dat"
+
+file_vbcs=1
+
+vel_bound_file="/g/data/v05/shared/CitcomS/Input/1.8Ga_OPT/Velocity/bvel"
+
+coor=1
+coor_file="/g/data/v05/shared/CitcomS/Input/G5.coor.global.dat"
+
+mat_control=0
+mat_file=""
+
+lith_age=1
+
+lith_age_file="/g/data/v05/shared/CitcomS/Input/1.8Ga_OPT/age/Cao2024.lith.dat"
+
+lith_age_time=1
+lith_age_depth=1
+lith_age_depth_function=1
+lith_age_exponent=0.5
+lith_age_min=23.9
+lith_age_stencil_value=-999
+
+slab_assim=1
+slab_assim_file="/g/data/v05/shared/CitcomS/Input/1.8Ga_OPT/hist/Cao2024.hist.dat"
+
+
+# Viscosity Information
+Viscosity=system
+rheol=7
+visc_smooth_method=3
+
+VISC_UPDATE=on
+num_mat=4
+
+TDEPV=on
+viscE=11.0,11.0,11.0,11.0
+viscT=.16,.16,.16,.16
+visc0=0.02,0.0006,0.02,0.6
+viscZ=20,20,20,20
+
+CDEPV=on
+cdepv_ff=1,100,100,10
+
+SDEPV=off
+sdepv_expt=1,1,1,1
+sdepv_misfit=0.020
+
+low_visc_channel=off
+low_visc_wedge=off
+lv_min_radius=0.9764
+lv_max_radius=0.9921
+lv_channel_thickness=0.0047
+lv_reduction=0.5
+
+VMIN=on
+visc_min=0.1
+VMAX=on
+visc_max=200.0
+
+
+# Phase Change Information
+Ra_410=2.45e8
+clapeyron410=0.0452
+transT410=0.445
+width410=0.00627
+
+Ra_670=6.4e8
+clapeyron670=-0.0226
+transT670=0.466
+width670=0.00627
+
+Ra_cmb=2.33e8
+clapeyroncmb=0.1084
+transTcmb=0.743
+widthcmb=0.00627
+
+
+# Boundary Conditions
+topvbc=1
+     topvbxval=0.0
+     topvbyval=0.0
+botvbc=0
+     botvbxval=0.0
+     botvbyval=0.0
+
+toptbc=1
+     toptbcval=0.0
+bottbc=1
+     bottbcval=1.0
+
+mantle_temp=0.500000
+temperature_bound_adj=0
+depth_bound_adj=0.157000
+width_bound_adj=0.087270
+
+# JZ addition
+#file_tcmb=1
+#tempcmbfile="/g/data/v05/shared/CitcomS/Input/Muller_1Gyr_OPT/Jiaxin/Tcmb/Gomi_1.8Ga.dat"
+file_Qt=1
+Qtfile="/g/data/v05/shared/CitcomS/Input/Muller_1Gyr_OPT/Jiaxin/Qt/Korenaga_13_1.8Ga_non_new.dat"
+self_consistent_tcmb=1
+c_effective=60.0
+
+# Initial conditions
+num_perturbations=1
+perturbmag=0.05
+perturbl=1
+perturbm=1
+perturblayer=5
+
+
+# required information
+Problem=convection
+Geometry=sphere
+Solver=multigrid
+node_assemble=1
+
+
+# Depth Information
+# for material above z_lith,    mat = 1;
+# for material above z_410,     mat = 2;
+# for material above z_lmantle, mat = 3;
+# for material below z_lmantle, mat = 4;
+z_lith=0.02511
+z_410=0.04866			#also depth of 410-phase change
+z_lmantle=0.105 		#also depth of 670-phase change
+z_cmb=0.43	   		#     depth of another phase change
+
+
+#  calculation region definition
+radius_inner=0.55
+radius_outer=1.0
+
+
+# Dimensional Information
+radius=6371e3
+density=4000.0
+thermdiff=1.0e-6
+gravacc=9.81
+thermexp=3.0e-5
+refvisc=1e21
+cp=1200
+density_above=1030.0
+density_below=6600.0
+
+
+# Solver Related Matters
+mg_cycle=1
+down_heavy=3
+up_heavy=3
+vlowstep=20
+vhighstep=3
+
+piterations=300
+accuracy=5.0e-4
+
+ADV=on
+monitor_max_T=1 
+fixed_timestep=0.0
+finetunedt=0.75
+adv_sub_iterations=2
+adv_gamma=0.5
+
+precond=on
+aug_lagr=on
+aug_number=2.0e5
+
+inner_remove_rigid_rotation=0
+remove_rigid_rotation=0
+remove_angular_momentum=0
+
+check_continuity_convergence=0
+check_pressure_convergence=1
